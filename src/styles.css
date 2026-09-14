@@ -162,3 +162,14 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+@utility campo {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  border: 1px solid var(--color-input);
+  background-color: var(--color-card);
+  padding-inline: 0.75rem;
+  font-size: 1rem;
+  color: var(--color-foreground);
+}
