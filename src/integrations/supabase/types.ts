@@ -14,13 +14,122 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      administradores: {
+        Row: {
+          criado_em: string
+          email: string | null
+          id: string
+        }
+        Insert: {
+          criado_em?: string
+          email?: string | null
+          id: string
+        }
+        Update: {
+          criado_em?: string
+          email?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
+      atletas: {
+        Row: {
+          ano_nascimento: number | null
+          atualizado_em: string
+          consentimento_em: string | null
+          cpf: string
+          criado_em: string
+          data_nascimento: string
+          documentos: string[]
+          id: string
+          nome_completo: string
+          nome_mae: string | null
+          nome_responsavel: string
+          orgao_emissor: string | null
+          projeto_id: string
+          rg: string
+          telefone_responsavel: string
+        }
+        Insert: {
+          ano_nascimento?: number | null
+          atualizado_em?: string
+          consentimento_em?: string | null
+          cpf: string
+          criado_em?: string
+          data_nascimento: string
+          documentos?: string[]
+          id?: string
+          nome_completo: string
+          nome_mae?: string | null
+          nome_responsavel: string
+          orgao_emissor?: string | null
+          projeto_id: string
+          rg: string
+          telefone_responsavel: string
+        }
+        Update: {
+          ano_nascimento?: number | null
+          atualizado_em?: string
+          consentimento_em?: string | null
+          cpf?: string
+          criado_em?: string
+          data_nascimento?: string
+          documentos?: string[]
+          id?: string
+          nome_completo?: string
+          nome_mae?: string | null
+          nome_responsavel?: string
+          orgao_emissor?: string | null
+          projeto_id?: string
+          rg?: string
+          telefone_responsavel?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "atletas_projeto_id_fkey"
+            columns: ["projeto_id"]
+            isOneToOne: false
+            referencedRelation: "projetos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projetos: {
+        Row: {
+          ativo: boolean
+          atualizado_em: string
+          criado_em: string
+          id: string
+          logo_url: string | null
+          nome: string
+          slug: string
+        }
+        Insert: {
+          ativo?: boolean
+          atualizado_em?: string
+          criado_em?: string
+          id?: string
+          logo_url?: string | null
+          nome: string
+          slug: string
+        }
+        Update: {
+          ativo?: boolean
+          atualizado_em?: string
+          criado_em?: string
+          id?: string
+          logo_url?: string | null
+          nome?: string
+          slug?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      eh_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
