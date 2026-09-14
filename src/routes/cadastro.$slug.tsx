@@ -60,7 +60,17 @@ async function comprimirImagem(arquivo: File): Promise<File> {
   }
 }
 
-type Erros = Record<string, string>;
+interface Erros {
+  nome?: string;
+  nascimento?: string;
+  cpf?: string;
+  rg?: string;
+  responsavel?: string;
+  telefone?: string;
+  arquivos?: string;
+  consentimento?: string;
+  geral?: string;
+}
 
 function PaginaCadastro() {
   const { slug } = Route.useParams();
@@ -366,9 +376,9 @@ function Campo({
 }: {
   id: string;
   rotulo: string;
-  erro?: string;
-  ajuda?: string;
-  opcional?: boolean;
+  erro?: string | undefined;
+  ajuda?: string | undefined;
+  opcional?: boolean | undefined;
   children: React.ReactNode;
 }) {
   return (
