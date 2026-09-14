@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CadastroSlugRouteImport } from './routes/cadastro.$slug'
 import { Route as AuthenticatedPainelIndexRouteImport } from './routes/_authenticated/painel/index'
+import { Route as AuthenticatedPainelProjetosRouteImport } from './routes/_authenticated/painel/projetos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,17 +41,25 @@ const AuthenticatedPainelIndexRoute =
     path: '/painel/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedPainelProjetosRoute =
+  AuthenticatedPainelProjetosRouteImport.update({
+    id: '/painel/projetos',
+    path: '/painel/projetos',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/cadastro/$slug': typeof CadastroSlugRoute
+  '/painel/projetos': typeof AuthenticatedPainelProjetosRoute
   '/painel/': typeof AuthenticatedPainelIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/cadastro/$slug': typeof CadastroSlugRoute
+  '/painel/projetos': typeof AuthenticatedPainelProjetosRoute
   '/painel': typeof AuthenticatedPainelIndexRoute
 }
 export interface FileRoutesById {
@@ -59,19 +68,21 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/cadastro/$slug': typeof CadastroSlugRoute
+  '/_authenticated/painel/projetos': typeof AuthenticatedPainelProjetosRoute
   '/_authenticated/painel/': typeof AuthenticatedPainelIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/cadastro/$slug' | '/painel/'
+  fullPaths: '/' | '/auth' | '/cadastro/$slug' | '/painel/projetos' | '/painel/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/cadastro/$slug' | '/painel'
+  to: '/' | '/auth' | '/cadastro/$slug' | '/painel/projetos' | '/painel'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/cadastro/$slug'
+    | '/_authenticated/painel/projetos'
     | '/_authenticated/painel/'
   fileRoutesById: FileRoutesById
 }
@@ -119,14 +130,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPainelIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/painel/projetos': {
+      id: '/_authenticated/painel/projetos'
+      path: '/painel/projetos'
+      fullPath: '/painel/projetos'
+      preLoaderRoute: typeof AuthenticatedPainelProjetosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedPainelProjetosRoute: typeof AuthenticatedPainelProjetosRoute
   AuthenticatedPainelIndexRoute: typeof AuthenticatedPainelIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedPainelProjetosRoute: AuthenticatedPainelProjetosRoute,
   AuthenticatedPainelIndexRoute: AuthenticatedPainelIndexRoute,
 }
 
