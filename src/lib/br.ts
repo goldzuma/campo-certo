@@ -66,7 +66,7 @@ export function idadeEm(dataIso: string, referencia = new Date()): number {
 
 export function formatarData(dataIso: string): string {
   if (!dataIso) return "";
-  const [ano, mes, dia] = dataIso.split("T")[0].split("-");
+  const [ano, mes, dia] = (dataIso.split("T")[0] ?? "").split("-");
   if (!ano || !mes || !dia) return dataIso;
   return `${dia}/${mes}/${ano}`;
 }
