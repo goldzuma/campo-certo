@@ -8,6 +8,13 @@
       "when": 1789350443965,
       "tag": "0000_criar_projetos_atletas",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789350481231,
+      "tag": "0001_politicas_storage",
+      "breakpoints": true
     }
   ]
 }
